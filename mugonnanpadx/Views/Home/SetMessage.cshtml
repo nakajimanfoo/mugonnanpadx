@@ -1,0 +1,48 @@
+﻿@model mugonnanpadx.Models.MugonMessage
+@*using Microsoft.AspNet.Identity*@
+
+@{
+    ViewBag.Title = "メッセージ設定";
+}
+
+<h2>メッセージを書いて！</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-inline">
+        <h4>登録しよう！</h4>
+        <hr />
+    @if(ViewBag.ExistData)
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+    }
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+            </div>
+        <!--/div-->
+    @if(ViewBag.ExistData)
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Yes)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.No)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserID)
+     }
+        <!--div class="form-group" -->
+            <div class="col-md-2">
+                <input type="submit" value="メッセージ登録！" class="btn btn-lg btn-danger" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

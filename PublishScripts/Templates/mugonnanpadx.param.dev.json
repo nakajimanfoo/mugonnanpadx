@@ -1,0 +1,32 @@
+{
+  "siteName": {
+    "value": "mugonnanpadx"
+  },
+  "hostingPlanName": {
+    "value": "testwebapp"
+  },
+  "siteLocation": {
+    "value": "Japan East"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "serverName": {
+    "value": "mugonnanpadx"
+  },
+  "serverLocation": {
+    "value": "Japan East"
+  },
+  "administratorLogin": {
+    "value": "mugonnanpadx"
+  },
+  "administratorLoginPassword": {
+    "value": "atlas-s00"
+  },
+  "databaseName": {
+    "value": "mugonnanpadx_db"
+  }
+}

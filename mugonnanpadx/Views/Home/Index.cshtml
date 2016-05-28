@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <div class="jumbotron">
+        <h1>@ViewBag.Message</h1>
+
+        <p>
+            @Html.ActionLink("Yes", "Yes", "Home", "", new { @class = "btn btn-info btn-lg" })
+        @Html.ActionLink("No", "No", "Home", "", new { @class = "btn btn-danger btn-lg" })
+    </p>
+    </div>
+}
+else
+{
+    <div class="jumbotron">
+        <h1>画面を見せて、思いを伝えよう！</h1>
+        <p class="lead">カンタン　ツタワル　コタエル　気持ちがイキカウWebサイト</p>
+        <p>@Html.ActionLink("いますぐ登録", "Register", "Account","",new { @class ="btn btn-primary btn-lg" })
+        @Html.ActionLink("ログイン", "Login", "Account","", new { @class = "btn btn-primary btn-lg" })</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 bg-info">
+            <h2>カンタン！</h2>
+            <p>メッセージを書き込んで</p>
+        </div>
+        <div class="col-md-4 bg-info">
+            <h2>ツタワル！</h2>
+            <p>画面を見せて</p>
+            </div>
+        <div class="col-md-4 bg-info">
+            <h2>コタエル！</h2>
+            <p>YesかNoか、選ぶだけ！</p>
+        </div>
+    </div>
+}

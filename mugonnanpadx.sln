@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mugonnanpadx", "mugonnanpadx\mugonnanpadx.csproj", "{7A61F3B6-8FB3-4E64-AF00-EDF8D753E95D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{BDF051B4-D650-41A5-BFDC-91EACAE3C4C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{CE6FBEFD-B2A4-4703-8BD7-1381FC96B2C9}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{69173F71-40FC-47D0-AF6F-0BA045069EDD}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\mugonnanpadx.json = PublishScripts\Templates\mugonnanpadx.json
+		PublishScripts\Templates\mugonnanpadx.param.dev.json = PublishScripts\Templates\mugonnanpadx.param.dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A61F3B6-8FB3-4E64-AF00-EDF8D753E95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A61F3B6-8FB3-4E64-AF00-EDF8D753E95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A61F3B6-8FB3-4E64-AF00-EDF8D753E95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A61F3B6-8FB3-4E64-AF00-EDF8D753E95D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CE6FBEFD-B2A4-4703-8BD7-1381FC96B2C9} = {BDF051B4-D650-41A5-BFDC-91EACAE3C4C7}
+		{69173F71-40FC-47D0-AF6F-0BA045069EDD} = {BDF051B4-D650-41A5-BFDC-91EACAE3C4C7}
+	EndGlobalSection
+EndGlobal
