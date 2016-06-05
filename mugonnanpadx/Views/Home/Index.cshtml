@@ -1,39 +1,66 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model mugonnanpadx.Models.MugonMessage
 @using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Home Page";
+}    
+
 @if (Request.IsAuthenticated)
 {
-    <div class="jumbotron">
-        <h1>@ViewBag.Message</h1>
 
-        <p>
-            @Html.ActionLink("Yes", "Yes", "Home", "", new { @class = "btn btn-info btn-lg" })
-        @Html.ActionLink("No", "No", "Home", "", new { @class = "btn btn-danger btn-lg" })
-    </p>
+    <form method="post" action="Home">
+        @Html.AntiForgeryToken()
+
+        <div class="form-inline">
+        @if(ViewBag.ExistData)
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Message)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Yes)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.No)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.UserID)
+        }
+
+        <div class="form-group">
+            <div class="jumbotron">
+                <h1>@ViewBag.Message</h1>
+
+                <p>
+                    <input type="submit" name="YesNoButton" value="Yes" class="btn btn-lg btn-danger btn-lg" />
+                    <input type="submit" name="YesNoButton" value="No" class="btn btn-lg btn-info btn-lg" />
+                </p>
+            </div>
+        </div>
     </div>
+    </form>
 }
 else
 {
-    <div class="jumbotron">
-        <h1>画面を見せて、思いを伝えよう！</h1>
-        <p class="lead">カンタン　ツタワル　コタエル　気持ちがイキカウWebサイト</p>
-        <p>@Html.ActionLink("いますぐ登録", "Register", "Account","",new { @class ="btn btn-primary btn-lg" })
-        @Html.ActionLink("ログイン", "Login", "Account","", new { @class = "btn btn-primary btn-lg" })</p>
-    </div>
+<div class="jumbotron">
+    <h1>画面を見せて、思いを伝えよう！</h1>
+    <p class="lead">カンタン　ツタワル　コタエル　気持ちがイキカウWebサイト</p>
+    <p>
+        @Html.ActionLink("いますぐ登録", "Register", "Account","",new { @class ="btn btn-primary btn-lg" })
+        @Html.ActionLink("ログイン", "Login", "Account","", new { @class = "btn btn-primary btn-lg" })
+    </p>
+</div>
 
-    <div class="row">
-        <div class="col-md-4 bg-info">
-            <h2>カンタン！</h2>
-            <p>メッセージを書き込んで</p>
-        </div>
-        <div class="col-md-4 bg-info">
-            <h2>ツタワル！</h2>
-            <p>画面を見せて</p>
-            </div>
-        <div class="col-md-4 bg-info">
-            <h2>コタエル！</h2>
-            <p>YesかNoか、選ぶだけ！</p>
-        </div>
+<div class="row">
+    <div class="col-md-4 bg-info">
+        <h2>カンタン！</h2>
+        <p>メッセージを書き込んで</p>
     </div>
+    <div class="col-md-4 bg-info">
+        <h2>ツタワル！</h2>
+        <p>画面を見せて</p>
+    </div>
+    <div class="col-md-4 bg-info">
+        <h2>コタエル！</h2>
+        <p>YesかNoか、選ぶだけ！</p>
+    </div>
+</div>
 }

@@ -27,12 +27,54 @@ namespace mugonnanpadx.Controllers
                 foreach (MugonMessage mugonMessage in mugonMessages)
                 {
                     ViewBag.Message = mugonMessage.Message;
-                    return View();
+                    ViewBag.ExistData = true;
+                    return View(mugonMessage);
                 }
             }
 
             ViewBag.Message = "茶でもしばかんけ？";
+            ViewBag.ExistData = false;
             return View();
+        }
+
+        // POST: MugonMessages/Edit/5
+        // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
+        // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index([Bind(Include = "ID,Message,Yes,No,UserID")] MugonMessage mugonMessage,string YesNoButton)
+        {
+            if (YesNoButton == "Yes")
+            {
+                if (User.Identity.GetUserId() == null)
+                {
+                    return RedirectToAction("Yes");//null);
+                }
+                
+                mugonMessage.Yes++;
+                db.Entry(mugonMessage).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["YesNoCount"] = mugonMessage.Yes;
+                return RedirectToAction("Yes"); //Yes();//mugonMessage.Yes);
+
+            }
+            else if (YesNoButton == "No")
+            {
+
+                if (User.Identity.GetUserId() == null)
+                {
+                    return RedirectToAction("No"); ;
+                }
+                
+                mugonMessage.No++;
+                db.Entry(mugonMessage).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["YesNoCount"] = mugonMessage.No;
+                return RedirectToAction("No");
+            }
+
+                return Index();
+
         }
 
         public ActionResult About()
@@ -50,11 +92,15 @@ namespace mugonnanpadx.Controllers
         }
 
         public ActionResult Yes()
-        {
-            return View();
+        { 
+                //ViewBag.Count = 1;
+                return View();
+            
         }
-        public ActionResult No()
+        public ActionResult No(int? Count)
         {
+
+            //ViewBag.Count = Count;
             return View();
         }
 
