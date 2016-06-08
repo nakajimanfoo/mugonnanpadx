@@ -11,27 +11,29 @@
         @Html.AntiForgeryToken()
 
         <div class="form-inline">
-        @if(ViewBag.ExistData)
-        {
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.ID)
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Message)
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Yes)
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.No)
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.UserID)
-        }
 
         <div class="form-group">
             <div class="jumbotron">
                 <h1>@ViewBag.Message</h1>
+                <p>                    
+                    @if(ViewBag.ExistData)
+                    {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Message)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Yes)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.No)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.UserID)
+                    }
 
-                <p>
                     <input type="submit" name="YesNoButton" value="Yes" class="btn btn-lg btn-danger btn-lg" />
                     <input type="submit" name="YesNoButton" value="No" class="btn btn-lg btn-info btn-lg" />
+
+                    <h4> 今までNoが選択された回数は @Html.DisplayFor(model => model.No) 回です。</h4>
                 </p>
             </div>
         </div>

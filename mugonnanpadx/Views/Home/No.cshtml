@@ -6,7 +6,7 @@
 
 <h1>No……</h1>
 
-<h2>またよろしくお願いします。</h2>
+<h3>またよろしくお願いします。</h3>
 
 
 @if(@Html.Encode(TempData["YesNoCount"]) != null)
@@ -14,7 +14,7 @@
 <p>
 
 
-    Noが選択されたのは<h3>@Html.Encode(TempData["YesNoCount"])</h3>回目です。
+    Noが選択されたのは<span style="font-size: 2em;">@Html.Encode(TempData["YesNoCount"])</span>回目です。
 
 
 </p>
