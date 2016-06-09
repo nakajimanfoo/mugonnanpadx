@@ -4,21 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>No……</h1>
+<div class="jumbotron">
+    <h1>No……</h1>
 
-<h3>またよろしくお願いします。</h3>
-
-
-@if(@Html.Encode(TempData["YesNoCount"]) != null)
-{
-<p>
+    <h3>またよろしくお願いします。</h3>
 
 
-    Noが選択されたのは<span style="font-size: 2em;">@Html.Encode(TempData["YesNoCount"])</span>回目です。
+    @if(!string.IsNullOrWhiteSpace(@Html.Encode(TempData["YesNoCount"])))
+    {
+    <p>
 
 
-</p>
-}
-<div>
-    @Html.ActionLink("戻る", "Index")
+        Noが選択されたのは<span style="font-size: 2em;">@Html.Encode(TempData["YesNoCount"])</span>回目です。
+
+
+    </p>
+    }
+    <div>
+        @Html.ActionLink("戻る", "Index", "Home","", new { @class = "btn btn-lg btn-warning" })
+    </div>
 </div>

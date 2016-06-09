@@ -21,7 +21,7 @@ namespace mugonnanpadx.Controllers
         public AccountController()
         {
         }
-
+        
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -149,12 +149,7 @@ namespace mugonnanpadx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-
-            //MugonDBContext db = new MugonDBContext();
-
-            //model.Message = "茶でもしばかんけ？";
-            //model.Yes = 0;
-            //model.No =0;
+            
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
@@ -163,20 +158,6 @@ namespace mugonnanpadx.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                    //using (var context = new MugonDBContext())
-                    //{
-                    //    context.MugonMessages.Add(new MugonMessage
-                    //    {
-                    //        UserID=model.Email,
-                    //        Yes=0,
-                    //        No=0,
-                    //        Message="茶でもしばかんけ？"
-                    //    });
-                    //    context.SaveChanges();
-                    //}
-                    //MugonMessage mugonMessage = new MugonMessage();
-                    //mugonMessage.Message = "付き合って下さい!!";
-                    //mugonMessage.UserID = model.Email;
 
                     //db.MugonMessages.Add(mugonMessage);
                     //db.SaveChanges();

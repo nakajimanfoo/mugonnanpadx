@@ -141,7 +141,7 @@ namespace mugonnanpadx.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SetMessage([Bind(Include = "ID,Message,Yes,No,UserID")] MugonMessage mugonMessage)
+        public ActionResult SetMessage([Bind(Include = "ID,Message,Yes,No,UserID")] MugonMessage mugonMessage,bool YesNoClear = false)
         {
 
             //System.Diagnostics.Trace.WriteLine(mugonMessage.UserID);
@@ -156,6 +156,11 @@ namespace mugonnanpadx.Controllers
                 }
                 else
                 {
+                    if (YesNoClear == true)
+                    {
+                        mugonMessage.Yes = 0;
+                        mugonMessage.No = 0;
+                    }
                     db.Entry(mugonMessage).State = EntityState.Modified;
                 }
                 db.SaveChanges();
@@ -163,9 +168,6 @@ namespace mugonnanpadx.Controllers
             }
             return View(mugonMessage);
         }
-
-
-
-
+        
     }
 }

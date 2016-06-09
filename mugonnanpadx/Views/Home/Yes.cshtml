@@ -1,24 +1,26 @@
 ﻿
 @{
     ViewBag.Title = "Yes!!";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="jumbotron">
 
-<h1>Yes!!!</h1>
+    <h1>Yes!!!</h1>
 
-<h3>ありがとうございます。</h3>
+    <h3>ありがとうございます。</h3>
 
-@if(@Html.Encode(TempData["YesNoCount"]) != null)
-{
-<p>
-
-
-    Yesが選択されたのは<span style="font-size: 2em;">@Html.Encode(TempData["YesNoCount"])</span>回目です。
+    @if(!string.IsNullOrWhiteSpace(@Html.Encode(TempData["YesNoCount"])))
+    {
+    <p>
 
 
-</p>
-}
+        Yesが選択されたのは<span style="font-size: 2em;">@Html.Encode(TempData["YesNoCount"])</span>回目です。
 
-<div>
-    @Html.ActionLink("戻る", "Index")
+
+    </p>
+    }
+
+    <div>
+        @Html.ActionLink("戻る", "Index", "Home","", new { @class = "btn btn-lg btn-success" })
+    </div>
 </div>
