@@ -72,6 +72,8 @@ namespace mugonnanpadx.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            ViewBag.ExistData = false;
+            ViewBag.MenuSetMessage = false;
             return View(model);
         }
 
@@ -217,6 +219,8 @@ namespace mugonnanpadx.Controllers
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
+            ViewBag.ExistData = false;
+            ViewBag.MenuSetMessage = false;
             return View();
         }
 
@@ -248,6 +252,8 @@ namespace mugonnanpadx.Controllers
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
+            ViewBag.ExistData = false;
+            ViewBag.MenuSetMessage = false;
             return View();
         }
 

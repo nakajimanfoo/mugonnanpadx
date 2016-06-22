@@ -8,44 +8,46 @@
 {
 
     <form method="post" action="Home">
-        @Html.AntiForgeryToken()
+        @*using (Html.BeginForm("Index","Home",FormMethod.Post))
+        {*@
+           @Html.AntiForgeryToken()
+           <div class="form-inline">
+             <div class="form-group">
+                <div class="jumbotron">
+                    <h1>@ViewBag.Message</h1>
+                    <p>                    
+                        @if(ViewBag.ExistData)
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ID)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Message)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Yes)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.No)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.UserID)
 
-        <div class="form-inline">
+                            <input type="submit" name="YesNoButton" value="Yes" class="btn btn-lg btn-danger" />
+                            <input type="submit" name="YesNoButton" value="No" class="btn btn-lg btn-info" />
 
-        <div class="form-group">
-            <div class="jumbotron">
-                <h1>@ViewBag.Message</h1>
-                <p>                    
-                    @if(ViewBag.ExistData)
-                    {
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.ID)
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Message)
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Yes)
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.No)
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.UserID)
+                            <h4> 今までNoが選択された回数は @Html.DisplayFor(model => model.No) 回です。</h4>
 
-                        <input type="submit" name="YesNoButton" value="Yes" class="btn btn-lg btn-danger" />
-                        <input type="submit" name="YesNoButton" value="No" class="btn btn-lg btn-info" />
+                        }
+                        else
+                        {
+                             @Html.ActionLink("Yes", "Yes", "Home","",new { @class ="btn btn-lg btn-danger" })
+                             @Html.ActionLink("No", "No", "Home","", new { @class = "btn btn-lg btn-info" })
+                        }
 
-                        <h4> 今までNoが選択された回数は @Html.DisplayFor(model => model.No) 回です。</h4>
-
-                    }
-                    else
-                    {
-                         @Html.ActionLink("Yes", "Yes", "Home","",new { @class ="btn btn-lg btn-danger" })
-                         @Html.ActionLink("No", "No", "Home","", new { @class = "btn btn-lg btn-info" })
-                    }
-
-                </p>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
+    @*}*@
     </form>
+
 }
 else
 {

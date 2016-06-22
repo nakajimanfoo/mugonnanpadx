@@ -21,6 +21,8 @@ namespace mugonnanpadx.Controllers
         public ActionResult Index()
         {
             //
+            //ViewBag.IndexFlag = true;
+            ViewBag.MenuSetMessage = true;
             if (Request.IsAuthenticated)
             {
                 var mugonMessages = db.MugonMessages.Where(x => x.UserID == User.Identity.Name);
@@ -92,15 +94,31 @@ namespace mugonnanpadx.Controllers
         }
 
         public ActionResult Yes()
-        { 
-                //ViewBag.Count = 1;
-                return View();
+        {
+            //var mugonMessages = db.MugonMessages.Where(x => x.UserID == User.Identity.Name);
+            //foreach (MugonMessage mugonMessage in mugonMessages)
+            //{
+            //    ViewBag.ExistData = true;
+            //    return View(mugonMessage);
+            //}
+            //ViewBag.Count = 1;
+            ViewBag.ExistData = false;
+            ViewBag.MenuSetMessage = false;
+            return View();
             
         }
-        public ActionResult No(int? Count)
+        public ActionResult No()
         {
-
+            //var mugonMessages = db.MugonMessages.Where(x => x.UserID == User.Identity.Name);
+            //foreach (MugonMessage mugonMessage in mugonMessages)
+            //{
+            //    ViewBag.ExistData = true;
+            //    return View(mugonMessage);
+            //}
             //ViewBag.Count = Count;
+
+            ViewBag.ExistData = false;
+            ViewBag.MenuSetMessage = false;
             return View();
         }
 
@@ -116,6 +134,7 @@ namespace mugonnanpadx.Controllers
             }
             //ViewBag.UserID = User.Identity.GetUserId();
 
+            ViewBag.MenuSetMessage = true;
             var mugonMessages = db.MugonMessages.Where(x => x.UserID == User.Identity.Name);
             foreach (MugonMessage mugonMessage in mugonMessages)
             {
@@ -168,6 +187,37 @@ namespace mugonnanpadx.Controllers
             }
             return View(mugonMessage);
         }
-        
+
+        // POST: MugonMessages/Edit/5
+        // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
+        // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
+        public ActionResult SetMessage2([Bind(Include = "ID,Message,Yes,No,UserID")] MugonMessage mugonMessage, bool YesNoClear = false)
+        {
+
+            //System.Diagnostics.Trace.WriteLine(mugonMessage.UserID);
+            if (ModelState.IsValid)
+            {
+                var mugonMessages = db.MugonMessages.Where(x => x.UserID == User.Identity.Name);
+
+                if (mugonMessages.Count() == 0)
+                {
+                    mugonMessage.UserID = User.Identity.Name;
+                    db.MugonMessages.Add(mugonMessage);
+                }
+                else
+                {
+                    if (YesNoClear == true)
+                    {
+                        mugonMessage.Yes = 0;
+                        mugonMessage.No = 0;
+                    }
+                    db.Entry(mugonMessage).State = EntityState.Modified;
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
